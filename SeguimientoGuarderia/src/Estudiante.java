@@ -60,6 +60,17 @@ public class Estudiante {
         this.contactoAcudiente = contactoAcudiente;
     }
 
-
+    @Override
+    public String toString() {
+        return "Estudiante{" +
+                "nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                ", genero='" + genero + '\'' +
+                ", id='" + id + '\'' +
+                ", alerigas='" + alerigas + '\'' +
+                ", nombreAcudiente='" + nombreAcudiente + '\'' +
+                ", contactoAcudiente='" + contactoAcudiente + '\'' +
+                '}';
+    }
 }
 

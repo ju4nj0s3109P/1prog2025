@@ -1,13 +1,13 @@
 public class Estudiante {
+    private String id;
     private String nombre;
     private int edad;
     private String genero;
-    private String id;
     private String alerigas;
     private String nombreAcudiente;
     private String contactoAcudiente;
 
-    public Estudiante(String nombre, int edad, String genero, String id, String alerigas,
+    public Estudiante(String id,String nombre, int edad, String genero, String alerigas,
                       String nombreAcudiente, String contactoAcudiente) {
         this.nombre = nombre;
         this.edad = edad;
@@ -17,6 +17,18 @@ public class Estudiante {
         this.nombreAcudiente = nombreAcudiente;
         this.contactoAcudiente = contactoAcudiente;
     }
+
+    public Estudiante(String idActualizar, String nuevoNombre, int nuevaEdad, String nuevoGenero, String nuevoAcudiente, String nuevoContacto) {
+        this.id = idActualizar;
+        this.nombre = nuevoNombre;
+        this.edad = nuevaEdad;
+        this.genero = nuevoGenero;
+        this.alerigas = nuevoAcudiente;
+        this.nombreAcudiente = nuevoAcudiente;
+        this.contactoAcudiente = nuevoContacto;
+
+    }
+
     public String getNombre() {
         return nombre;
     }

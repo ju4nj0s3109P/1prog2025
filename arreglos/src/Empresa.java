@@ -51,11 +51,24 @@ public class Empresa {
         for (int i = 0; i < listaEmpleados.length; i++){
             if (listaEmpleados[i]!= null && listaEmpleados[i].getId().equals(id)){
                 System.out.println(listaEmpleados[i]);
+                hayEmpleados=true;
                 break;
             }
-            if (!hayEmpleados){
-                System.out.println("No hay empleados registrados con el id:" + id);
+        }
+        if (!hayEmpleados) {
+            System.out.println("No hay empleados registrados con el id:" + id);
+        }
+    }
+    public void buscarCargo(String cargo){
+        boolean encontrado=false;
+        for (int i = 0; i < listaEmpleados.length; i++){
+            if (listaEmpleados[i] != null && listaEmpleados[i].getCargo().equals(cargo)){
+                System.out.println(listaEmpleados[i]);
+                encontrado=true;
             }
+        }
+        if (!encontrado) {
+            System.out.println("No hay empleados registrados con cargo:" + cargo);
         }
     }
     public void eliminarEmpleado(String id){
@@ -94,11 +107,78 @@ public class Empresa {
         }
     }
 
-    public double calcularSalario(){
+    public double calcularSalario(String cargo, int tiempo){
         double salarioBase;
-        
+        switch (cargo.toLowerCase()){
+            case "ayudante":
+                salarioBase = 100;
+                break;
+            case "supervisor":
+                salarioBase = 500;
+                break;
+            case "gerente":
+                salarioBase = 1000;
+                break;
+                default:
+                    salarioBase = 0;
+        }
+        if (tiempo>=10){
+            salarioBase = salarioBase * 1.15;
+        }
+        else if (tiempo>=5){
+            salarioBase = salarioBase * 1.1;
+        }
+        else if (tiempo>=3){
+            salarioBase = salarioBase * 1.05;
+        }
+        return salarioBase;
     }
+    public void empleadoMasSalario(){
+        Empleado empleadoMasSalario=null;
+        double salarioMayor=0;
+        for (Empleado empleado : listaEmpleados){
+            if (empleado != null && empleado.getSalario()>salarioMayor){
+                empleadoMasSalario = empleado;
+                salarioMayor = empleado.getSalario();
+            }
+        }
 
+        if (empleadoMasSalario==null){
+            System.out.println("No hay empleados registrados");
+        }else{
+            System.out.println( "el empleado con mas salario es :" + empleadoMasSalario);
+        }
+    }
+    public void empleadoMenosSalario(){
+        Empleado empleadoMenosSalario=null;
+        double salarioMenos=9999;
+
+        for (Empleado empleado : listaEmpleados){
+            if (empleado != null && empleado.getSalario()<salarioMenos){
+                empleadoMenosSalario = empleado;
+                salarioMenos = empleado.getSalario();
+            }
+        }
+        if (empleadoMenosSalario==null){
+            System.out.println("No hay empleados registrados");
+        }else{
+            System.out.println("El empleado con menos salario es :" + empleadoMenosSalario);
+        }
+    }
+    public void cargarDatos() {
+        listaEmpleados[0] = new Empleado("Juan Pérez", "E001", "ayudante",
+                2, calcularSalario("ayudante",2));
+        listaEmpleados[1] = new Empleado("María González", "E002", "supervisor",
+                5, calcularSalario("supervisor", 5));
+        listaEmpleados[2] = new Empleado("Carlos Ramírez", "E003", "gerente",
+                10, calcularSalario("gerente", 10));
+        listaEmpleados[3] = new Empleado("Ana Torres", "E004", "ayudante",
+                4, calcularSalario("ayudante", 4));
+        listaEmpleados[4] = new Empleado("Pedro Jiménez", "E005", "supervisor",
+                7, calcularSalario("supervisor", 7));
+        System.out.println("Datos de empleados cargados.");
+
+    }
     public String getNombre() {
         return nombre;
     }

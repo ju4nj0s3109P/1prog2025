@@ -10,6 +10,7 @@ public class Empleado{
         this.id = id;
         this.cargo = cargo;
         this.tiempoEnEmpresa = tiempoEmpresa;
+        this.salario = salario;
     }
     public String getNombre(){
         return nombre;
